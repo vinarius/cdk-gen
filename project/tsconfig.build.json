@@ -1,0 +1,10 @@
+{
+  "extends": "./tsconfig.json",
+  "include": [
+    "./src/images/getResizedImage.ts",
+    "./src/lib/**/*"
+  ],
+  "compilerOptions": {
+    "outDir": "./dist/src"
+  }
+}

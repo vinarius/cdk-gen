@@ -1,0 +1,47 @@
+{
+  "name": "todo",
+  "version": "1.0.0",
+  "description": "todo",
+  "bin": {
+    "todo": "bin/todo.js"
+  },
+  "scripts": {
+    "build": "run-s clean build:* tsc",
+    "clean": "cross-env-shell \"rm -rf cdk.out coverage dist config.js bin/*.js bin/**/*.js data/**/*.js lib/*.js models/*.js src/**/**/*.js src/**.js stacks/*.js test/*.js\"",
+    "deploy": "npm run ts-node bin/deploy",
+    "destroy": "npm run ts-node bin/destroy",
+    "diff": "npm run cdk diff",
+    "generate-diagram": "run-s build synth \"ts-node bin/generateDiagram\"",
+    "hotswap": "npm run ts-node bin/hotswap",
+    "lint": "eslint . --ext .ts",
+    "synth": "ts-node bin/synth",
+    "test": "ts-node bin/test",
+    "tsc": "cross-env-shell \"node_modules/.bin/tsc --project tsconfig.build.json\"",
+    "watch": "npm run ts-node bin/cdkWatch"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8",
+    "@types/jest": "^27",
+    "@types/node": "^16",
+    "@typescript-eslint/eslint-plugin": "^5",
+    "@typescript-eslint/parser": "^5",
+    "aws-cdk": "^2",
+    "esbuild": "^0",
+    "esbuild-jest": "^0",
+    "eslint": "^8",
+    "jest": "^27",
+    "jest-mock-process": "^1",
+    "npm-run-all": "^4",
+    "ts-jest": "^27",
+    "ts-node": "^10",
+    "typescript": "^4"
+  },
+  "dependencies": {
+    "aws-cdk-lib": "^2",
+    "constructs": "^10",
+    "source-map-support": "^0"
+  },
+  "optionalDependencies": {
+    "fsevents": "*"
+  }
+}
