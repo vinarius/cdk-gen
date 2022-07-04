@@ -1,5 +1,11 @@
+import { cpSync } from 'fs';
+
 async function main(): Promise<void> {
-  // TODO: copy template to current working directory or command line argument
+  cpSync(
+    'template',
+    process.argv[2] ?? process.cwd(),
+    { recursive: true }
+  );
 }
 
 main();
