@@ -4,10 +4,7 @@
   "description": "Scaffold a new AWS CDK typescript project",
   "main": "dist/main.js",
   "types": "dist/main.d.ts",
-  "bin": "dist/main.js",
-  "files": [
-    "dist/**/*"
-  ],
+  "bin": "dist",
   "scripts": {
     "build": "tsc && cp -r template dist/template",
     "prepublish": "npm run build",

@@ -1,0 +1,7 @@
+node_modules
+template
+.gitignore
+.npmignore
+main.ts
+README.md
+tsconfig.json
