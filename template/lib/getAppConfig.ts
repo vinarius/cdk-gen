@@ -31,7 +31,7 @@ export async function getAppConfig(): Promise<ApplicationDefinition> {
   return {
     ...config,
     profile: deployMfa ? `${alias}-token` : alias,
-    isStagingEnv: stage === 'prod' || stage === 'qa',
+    isStagingEnv: stage === 'prod' || stage === 'qa' || stage === 'dev',
     stage,
     branch,
     project

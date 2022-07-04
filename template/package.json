@@ -8,7 +8,8 @@
   "scripts": {
     "build": "run-s clean build:* tsc",
     "clean": "cross-env-shell \"rm -rf cdk.out coverage dist config.js bin/*.js bin/**/*.js data/**/*.js lib/*.js models/*.js src/**/**/*.js src/**.js stacks/*.js test/*.js\"",
-    "deploy": "npm run ts-node bin/deploy",
+    "deploy": "npm run ts-node bin/deploy && run-p deploy:*",
+    "deploy:api": "npm run ts-node bin/deployApi",
     "destroy": "npm run ts-node bin/destroy",
     "diff": "npm run cdk diff",
     "generate-diagram": "run-s build synth \"ts-node bin/generateDiagram\"",

@@ -1,15 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { ErrorObject } from 'ajv';
-
-export const throwValidationError = (validationErrors: ErrorObject<string, Record<string, any>, unknown>[] | null | undefined = []) => {
-  throw {
-    reason: 'ValidationError',
-    isIntentionalError: true,
-    validationErrors,
-    statusCode: 400
-  };
-};
-
 export const throwBadRequestError = (error?: any) => {
   throw {
     reason: error?.name ?? 'BadRequest',

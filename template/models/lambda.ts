@@ -1,11 +1,11 @@
 import { AssetCode } from 'aws-cdk-lib/aws-lambda';
-import { NodejsFunction as NodeLambda, NodejsFunctionProps } from 'aws-cdk-lib/aws-lambda-nodejs';
+import { NodejsFunction, NodejsFunctionProps } from 'aws-cdk-lib/aws-lambda-nodejs';
 import { HttpMethod } from './enums';
 
 export interface LambdaDefinition extends Partial<NodejsFunctionProps> {
   name: string; // Must match the file name without the file extension.
   skip?: boolean;
-  customLogicFunctions?: ((lambda: NodeLambda) => void)[];
+  customLogicFunctions?: ((lambda: NodejsFunction) => void)[];
   api?: {
     httpMethod: HttpMethod;
     customApiPath?: string;

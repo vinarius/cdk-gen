@@ -33,7 +33,7 @@ async function buildInfrastructure(): Promise<void> {
     app.synth();
   } catch (error) {
     const { name, message } = error as Error;
-    console.error(`${name}: ${message}`);
+    error instanceof Error ? console.error(`${error.name ?? 'Error'}: ${error.message}`) : console.error(error);
   }
 }
 

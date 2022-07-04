@@ -1,11 +1,10 @@
-import { Generic } from '../models/cloudResources';
 
 export function getQueryParams(
-  queryStringParams: Generic,
+  queryStringParams: { [key: string]: string; },
   _requiredParams: string[],
   _optionalParams: string[] = []
-): Generic {
-  const decodedParams: Generic = {};
+): { [key: string]: string; } {
+  const decodedParams: { [key: string]: string; } = {};
   const requiredParams = _requiredParams.map(param => param.toLowerCase());
   const optionalParams = _optionalParams.map(param => param.toLowerCase());
 

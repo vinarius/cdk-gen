@@ -26,8 +26,8 @@ export async function validateAwsProfile(profile: string): Promise<void> {
     });
   } catch (error) {
     const { name, message } = error as Error;
-    console.error(`${name}: ${message}`);
+    error instanceof Error ? console.error(`${error.name ?? 'Error'}: ${error.message}`) : console.error(error);
 
-    if (!IS_JEST) process.exit(1);
+    process.exit(1);
   }
 }

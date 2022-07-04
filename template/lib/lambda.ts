@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { AWSLambda as Sentry } from '@sentry/serverless';
+
 import { APIGatewayProxyEvent } from 'aws-lambda';
 import { DateTime } from 'luxon';
-import { LoggerFactory } from '../lib/loggerFactory';
+import { LoggerFactory } from './loggerFactory';
 import { throwNotAuthorizedError } from './errors';
 
 export interface CognitoAuthorizerClaims {
@@ -28,23 +28,6 @@ export const headers = {
   'Access-Control-Allow-Credentials': true,
   'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,OPTIONS'
 };
-
-const {
-  stage = '',
-  sentryLogPercentage = 0.0
-} = process.env;
-
-if (
-  stage === 'prod' ||
-  stage === 'qa' ||
-  stage === 'dev'
-) {
-  Sentry.init({
-    dsn: 'https://888f4f0b2d604a8ca56c5f13d1d46ae1@o1190173.ingest.sentry.io/6485309',
-    environment: stage,
-    tracesSampleRate: +sentryLogPercentage
-  });
-}
 
 const logger = LoggerFactory.getLogger();
 
@@ -83,19 +66,11 @@ export async function handlerWrapper(
   } catch (caughtError: any) {
     logger.warn(caughtError);
 
-    const reason = caughtError.name ?? caughtError.reason ?? 'Unknown';
-
-    if (!caughtError.isIntentionalError) {
-      const sentryError = new Error(caughtError);
-      sentryError.name = reason;
-      Sentry.captureException(sentryError);
-    }
-
     return {
       statusCode: caughtError.statusCode ?? caughtError.$metadata?.httpStatusCode ?? 500,
       headers,
       body: JSON.stringify({
-        reason,
+        reason: caughtError.name ?? caughtError.reason ?? 'Unknown',
         error: caughtError.Error?.Message ?? caughtError.message ?? caughtError.error ?? caughtError.validationErrors ?? 'Unknown error',
         success: false
       })
