@@ -25,7 +25,10 @@ async function buildInfrastructure(): Promise<void> {
       env
     };
 
-    new MainStack = new MainStack(app, `${project}-main-stack-${stage}`, stackProps);
+    new MainStack(app, `${project}-main-stack-${stage}`, {
+      ...stackProps,
+      stack: 'main'
+    });
 
     app.synth();
   } catch (error) {
