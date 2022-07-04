@@ -1,6 +1,7 @@
-import { cpSync } from 'fs';
+import { cpSync, readdirSync } from 'fs';
 
-async function main(): Promise<void> {
+export function main(): void {
+  console.log(readdirSync(__dirname));
   cpSync(
     'template',
     process.argv[2] ?? process.cwd(),
