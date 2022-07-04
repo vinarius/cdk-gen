@@ -4,7 +4,7 @@
   "description": "Scaffold a new AWS CDK typescript project",
   "main": "dist/main.js",
   "types": "dist/main.d.ts",
-  "bin": "dist",
+  "bin": "dist/main.js",
   "files": [
     "dist"
   ],
