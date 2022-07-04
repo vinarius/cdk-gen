@@ -5,6 +5,9 @@
   "main": "dist/main.js",
   "types": "dist/main.d.ts",
   "bin": "dist",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "tsc && cp -r template dist/template",
     "prepublish": "npm run build",
